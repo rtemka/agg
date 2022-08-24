@@ -2,7 +2,6 @@
     "rss": [
         "https://habr.com/ru/rss/hub/go/all/?fl=ru",
         "https://habr.com/ru/rss/best/daily/?fl=ru",
-        "https://cprss.s3.amazonaws.com/golangweekly.com.xml",
         "https://rssexport.rbc.ru/rbcnews/news/10/full.rss",
         "https://russian.rt.com/rss",
         "https://news.mail.ru/rss/23/",
@@ -13,8 +12,7 @@
         "https://news.rambler.ru/rss/politics/",
         "https://rg.ru/xml/index.xml",
         "https://ria.ru/export/rss2/archive/index.xml",
-        "https://iz.ru/xml/rss/all.xml",
-        "https://tass.ru/rss/v2.xml"
+        "https://iz.ru/xml/rss/all.xml"
     ],
     "request_period": 10
 }
