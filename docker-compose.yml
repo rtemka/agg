@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  pgsql:
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_DB=sf_test_news
+      - POSTGRES_USER=sf_user
+      - POSTGRES_PASSWORD=sf1234
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    restart: always
+    volumes:
+      - .:/docker-entrypoint-initdb.d
+      - db_data:/var/lib/postgresql/data
+  newsservice:
+    build: ./newsservice
+    # ports:
+    #   - "8081:8081" # NEWS REST API
+    environment:
+      - NEWS_DB_URL=postgres://sf_user:sf1234@pgsql:5432/sf_test_news
+      - NEWS_PORT=:8081
+    depends_on:
+      - pgsql
+  comments:
+    build: ./comments
+    # ports:
+    #   - "8082:8082" # COMMENTS API
+    environment:
+      - COMMENTS_PORT=:8082
+      - DB_URL=file:./db/comments.db?cache=shared&mode=rwc&_timeout=5000&_journal=WAL&_foreign_keys=on
+    volumes:
+      - sqlite:/app/db
+  commscheck:
+    build: ./commscheck
+    # ports:
+    #   - "8083:8083" # COMMENTS CHECKING API
+    environment:
+      - COMMSCHECK_PORT=:8083
+  gateway:
+    build: ./gateway
+    ports:
+      - "8080:8080" # GATEWAY API
+    environment:
+      - GATEWAY_PORT=:8080
+      - NEWS_ADDR=newsservice:8081
+      - COMMENTS_ADDR=comments:8082
+      - COMMENTS_CHECK_ADDR=commscheck:8083
+    depends_on:
+      - newsservice
+      - comments
+      - commscheck
+volumes:
+  sqlite:
+  db_data:

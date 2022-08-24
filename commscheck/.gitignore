@@ -1,0 +1,10 @@
+tmp/
+bin/
+*.env
+*.txt
+/*.pem
+/*.pfx
+/*.crt
+/*.cer
+/*.der
+*.db*
