@@ -1,8 +1,8 @@
 ## Пример приложения с микросервисной архитектурой.
 
 #### **Состав приложения:**
-1. [Сервис агрегации новостей.](https://gitlab.com/rtemka/comments)
-2. [Сервис комментариев к новостям.](https://gitlab.com/rtemka/newsservice)
+1. [Сервис агрегации новостей.](https://gitlab.com/rtemka/newsservice)
+2. [Сервис комментариев к новостям.](https://gitlab.com/rtemka/comments)
 3. [Сервис модерации комментариев.](https://gitlab.com/rtemka/commscheck)
 4. [API Gateway.](https://gitlab.com/rtemka/gateway)
 
